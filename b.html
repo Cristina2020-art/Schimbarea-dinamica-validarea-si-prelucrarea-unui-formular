@@ -1,0 +1,84 @@
+<html>
+<head>
+<title> Schimbarea dinamica, validarea si prelucrarea unui formular </title>
+<script language="JavaScript" type="text/javascript">
+<!--
+
+function ResetOptionList(ElementValue)
+{
+   with (document.forms.Contact)
+   {
+      if (ElementValue==1)
+      {
+         OptionList[0].text="Pizza cu ciuperci"
+         OptionList[0].value=1
+         OptionList[1].text="Pizza Napolitana"
+         OptionList[1].value=2
+      }
+      if (ElementValue==2)
+      {
+         OptionList[0].text="Spaghetti Bolognese"
+         OptionList[0].value=1
+         OptionList[1].text="Spaghetti di Firenze"
+         OptionList[1].value=2
+      }
+   }
+}
+
+function Comanda()
+{
+   var selection="Ati comandat: "
+   with(document.forms.Contact)
+   {
+      if (OptionList[0].selected==true)
+      {
+         selection+=OptionList[0].text
+      }
+      if (OptionList[1].selected==true)
+      {
+         selection+=OptionList[1].text
+      }
+      selection+="\n Adresa: "+adresa_textfield.value
+      alert(selection)
+   }
+}
+
+function Validate(frm)
+{
+   if (frm.adresa_textfield.value=="")
+   {
+      alert("Nu ati completat adresa.")
+      frm.adresa_textfield.focus()
+      return false
+   }
+   Comanda()
+}
+
+-->
+</script>
+</head>
+<body>
+
+<FORM name="Contact" action="http://www.yahoo.com" method="post" onSubmit="return Validate(Contact)">
+<P>
+<select name="OptionList" size="3">
+<option value=1> 
+<option value=2> 
+</select>
+<BR>
+<INPUT TYPE="radio" name="specialitati" checked="true" value=1 onclick=ResetOptionList(this.value)>Pizza
+<INPUT TYPE="radio" name="specialitati" Value=2 onclick=ResetOptionList(this.value)>Spaghetti
+<br>
+<br>
+Adresa dvs.:
+<br>
+<input name="adresa_textfield" type="text" size="50">
+<br>
+<BR>
+<INPUT name="Submit" value="Trimite" type="submit"/>
+<INPUT name="Reset" value="Reseteaza" type="reset">
+</p>
+</form>
+
+</body>
+</html>
